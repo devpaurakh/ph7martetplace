@@ -23,3 +23,9 @@ class Item(models.Model):
     is_sold = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, related_name='item', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True, null=True)
+    
+    class Meta:
+        ordering= ('name',) # to keep the catagories in order
+    
+    def  __str__(self):
+        return self.name

@@ -3,5 +3,23 @@
 {% block title%}Welcome | PH7marketplace{% endblock %}
 
 {% block content%}
-<h1>This is  fornt page</h1>
+<div class="mt-7 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center"> Newest items</h2>
+    <div class=" grid grid-cols-4 gap-3">
+        {% for item in items %}
+       <div>
+        <a href="#">
+            <div>
+                <img src="{{item.image.url}}" alt="" class="rounded-t-xl">
+
+            </div>
+            <div class="p-6 bg-gray rounded-b-xl hover:text-teal-700 ">
+                <h2 class="text-2xl">{{ item.name }}</h2>
+                <p class="text-grey-500">Price: ${{item.price}}</p>
+            </div>
+        </a>
+       </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
