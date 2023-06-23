@@ -1,0 +1,44 @@
+{%extends 'core/base.html'%}
+{%block title %}{{item.name}} | PH7 Marketplace{% endblock %}
+{%block content%}
+<div class="grid grid-cols-5 gap-6 ">
+    <div class="col-span-3">
+        <img src="{{ item.image.url }}" alt="" class="rounded-xl">
+    </div>
+
+    <div class="col-span-2 p-6 bg-gray-100 text-justify rounded-xl">
+        <h1 class="mb-6 text-3xl text-teal-700">{{item.name}}</h1>
+        <p class="text-gray-500"><strong><span class="text-teal-700">Price:</span> ${{item.price}}</strong></p>
+        <p class="text-gray-500"><strong><samp class="text-teal-700">Seller:</samp> {{item.created_by.username}}</strong></p>
+
+        {%if item.description%}
+        <p class=" mt-10 text-gray-700"><strong class="text-gray-500"><span class="text-teal-700">Description</span>:{{item.description}}</strong></p>
+        {%endif%}
+
+        <a href="#" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-700 text-white rounded-xl hover:bg-teal-700">Contact Seller</a> 
+
+        <br>
+        <br>
+
+        <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+            <h2 class="mb-6 text-2xl text-center"> Related Items</h2>
+            <div class=" grid grid-cols-4 gap-3">
+                {% for item in related_items %}
+               <div>
+                <a href="{% url 'item:detail' item.id %}">
+                    <div>
+                        <img src="{{item.image.url}}" alt="" class="rounded-t-xl" style="height: 100px; width:100px;">
+        
+                    </div>
+                    <div class="p-6 bg-gray rounded-b-xl hover:text-teal-700 ">
+                        <h2 class="text-2xl">{{ item.name }}</h2>
+                        <p class="text-grey-500">Price: ${{item.price}}</p>
+                    </div>
+                </a>
+               </div>
+    </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}
